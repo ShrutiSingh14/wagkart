@@ -1,0 +1,83 @@
+<div class="app-name">
+  <h1>MovieNest</h1>
+</div>
+
+
+
+<div class="forms-container">
+  <div class="form-container">
+    <h1>{{ title }}</h1>
+    <form #myForm="ngForm" (ngSubmit)="addMovie(myForm)">
+    <!-- ... associates the NgForm directive with the form element, allowing you to reference it in your component... -->
+      <input type="text" ngModel name="title" placeholder="Enter Title" class="form-field" required/>
+      <br><br>
+      <input type="text" ngModel name="year" placeholder="Enter ReleaseYear" class="form-field" required />
+      <br><br> 
+      <input type="text" ngModel name="genre" placeholder="Enter Genre" class="form-field" required />
+      <br><br>
+      <input type="text" ngModel name="rating" placeholder="Enter Rating" class="form-field" required/>
+      <br><br>
+      <button class="submit">Add Movie</button>
+    </form>
+  </div>
+
+  
+  <div class="update-form">
+    <h1 class="form-title">{{ title2 }}</h1>
+    <div class="form-inputs">
+      <input type="text" [(ngModel)]="updatedMovieData.title" placeholder="Updated Title" class="update-field">
+      <br><br>
+      <input type="text" [(ngModel)]="updatedMovieData.genre" placeholder="Updated Genre" class="update-field">
+      <br><br>
+      <input type="text" [(ngModel)]="updatedMovieData.year" placeholder="Updated Year" class="update-field">
+      <br><br>
+      <input type="text" [(ngModel)]="updatedMovieData.rating" placeholder="Updated Rating" class="update-field">
+      <br><br>
+    </div>
+    <button (click)="updateMovie()" class="confirm-button">Confirm Update</button>
+  </div>
+</div>
+
+
+<!-- <ul *ngFor ="let movie of movies">
+<li >{{movie.id}} </li> 
+<li >{{movie.title}} </li>
+<li>{{movie.year}}</li>
+<li>{{movie.genre}}</li>
+<li>{{movie.rating}}</li>
+</ul> -->
+
+
+
+<h3 style="text-align: center;">{{ title1 }}</h3>
+<table class="movie-table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Genre</th>
+      <th>Year</th>
+      <th class="rating-column">Rating</th>
+      <th></th> <!-- Empty column for space -->
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let movie of movies" class="movie-item">
+  
+      <td>{{ movie.title }}</td>
+      <td>{{ movie.genre }}</td>
+      <td>{{ movie.year }}</td>
+      <td>{{ movie.rating }}</td>
+      <td class="update-button-cell">
+        <button (click)="prepareUpdateData(movie)">Update</button>
+      </td>
+      <td class="delete-button-cell">
+        <button (click)="deleteMovie(movie.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+  <!-- ... Table headers ... -->
+
